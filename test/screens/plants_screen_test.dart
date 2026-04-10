@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:pam_p7_2026_ifs18005/core/theme/app_theme.dart';
-import 'package:pam_p7_2026_ifs18005/core/theme/theme_notifier.dart';
-import 'package:pam_p7_2026_ifs18005/data/models/api_response_model.dart';
-import 'package:pam_p7_2026_ifs18005/data/models/plant_model.dart';
-import 'package:pam_p7_2026_ifs18005/data/services/plant_repository.dart';
-import 'package:pam_p7_2026_ifs18005/features/plants/plants_screen.dart';
-import 'package:pam_p7_2026_ifs18005/providers/plant_provider.dart';
+import 'package:pam_p7_2026_ifs23020/core/theme/app_theme.dart';
+import 'package:pam_p7_2026_ifs23020/core/theme/theme_notifier.dart';
+import 'package:pam_p7_2026_ifs23020/data/models/api_response_model.dart';
+import 'package:pam_p7_2026_ifs23020/data/models/plant_model.dart';
+import 'package:pam_p7_2026_ifs23020/data/services/plant_repository.dart';
+import 'package:pam_p7_2026_ifs23020/features/plants/plants_screen.dart';
+import 'package:pam_p7_2026_ifs23020/providers/plant_provider.dart';
 
 class MockPlantRepository extends PlantRepository {
   final List<PlantModel> plants;

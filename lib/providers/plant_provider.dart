@@ -123,7 +123,7 @@ class PlantProvider extends ChangeNotifier {
     _setStatus(PlantStatus.loading);
     final result = await _repository.deletePlant(id);
     if (result.success) {
-      _plants.removeWhere((p) => p.id == id);
+      _plants = _plants.where((p) => p.id != id).toList();
       _setStatus(PlantStatus.success);
       return true;
     }

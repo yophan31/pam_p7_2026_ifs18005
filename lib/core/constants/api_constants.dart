@@ -4,14 +4,16 @@
 class ApiConstants {
   ApiConstants._();
 
-  /// Base URL API Delcom Plants
-  /// Modifikasi username `ifs18005` sesuai dengan username kamu.
+  /// Base URL API
+  /// Modifikasi username `ifs23020` sesuai dengan username kamu.
   static const String baseUrl =
-      'https://pam-2026-p4-ifs18005-be.delcom.org:8080';
+      'https://pam-2026-p4-ifs23020-be.dyophanci.fun:8080';
 
-  /// Endpoint plants
+  // ── Plants ──────────────────────────────────────────────
   static const String plants = '/plants';
-
-  /// Endpoint detail / edit / delete plant by UUID
   static String plantById(String id) => '/plants/$id';
+
+  // ── Planets ──────────────────────────────────────────────
+  static const String planets = '/planets';
+  static String planetById(String id) => '/planets/$id';
 }

@@ -22,7 +22,7 @@ class TopAppBarMenuItem {
   final bool isDestructive;
 }
 
-/// Widget Top App Bar yang dapat dikonfigurasi
+/// Widget Top App Bar yang dapat dikonfigurasi — tema Planet
 class TopAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
   const TopAppBarWidget({
     super.key,
@@ -32,6 +32,7 @@ class TopAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
     this.searchQuery = '',
     this.onSearchQueryChange,
     this.menuItems = const [],
+    this.actions,
   });
 
   final String title;
@@ -40,6 +41,9 @@ class TopAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
   final String searchQuery;
   final ValueChanged<String>? onSearchQueryChange;
   final List<TopAppBarMenuItem> menuItems;
+
+  /// Actions tambahan (misal tombol edit/hapus di halaman detail)
+  final List<Widget>? actions;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -61,8 +65,6 @@ class _TopAppBarWidgetState extends State<TopAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-
-    // Akses ThemeNotifier dari widget tree untuk toggle dan baca state
     final themeNotifier = ThemeProvider.of(context);
     final isDark = themeNotifier.isDark;
 
@@ -72,39 +74,54 @@ class _TopAppBarWidgetState extends State<TopAppBarWidget> {
       elevation: 0,
       shadowColor: colorScheme.shadow.withValues(alpha: 0.5),
       scrolledUnderElevation: 4,
-      // Tombol back
+      // ── Tombol back ───────────────────────────────────────────────
       leading: widget.showBackButton
           ? IconButton(
-        icon: const Icon(Icons.arrow_back),
+        icon: const Icon(Icons.arrow_back_rounded),
         onPressed: () {
           if (context.canPop()) {
             context.pop();
           } else {
-            context.go(RouteConstants.plants);
+            context.go(RouteConstants.planets);
           }
         },
       )
           : null,
-      // Title atau Search Field
+      // ── Title / Search Field ──────────────────────────────────────
       title: _isSearchActive
           ? TextField(
         controller: _searchController,
         autofocus: true,
         decoration: InputDecoration(
-          hintText: 'Cari tanaman...',
+          hintText: 'Cari planet...',
           border: InputBorder.none,
-          hintStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+          hintStyle:
+          TextStyle(color: colorScheme.onSurfaceVariant),
         ),
         onChanged: widget.onSearchQueryChange,
       )
-          : Text(
-        widget.title,
-        style: Theme.of(context).textTheme.titleLarge,
+          : Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Ikon planet kecil di sebelah judul
+          Icon(
+            Icons.public,
+            size: 20,
+            color: colorScheme.primary,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            widget.title,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+        ],
       ),
-      // Aksi di kanan
+      // ── Actions ───────────────────────────────────────────────────
       actions: [
-        // Tombol toggle dark/light mode
-        // Menampilkan ikon matahari (light) atau bulan (dark) sesuai mode aktif
+        // Actions tambahan dari luar (edit, hapus, dsb.)
+        if (widget.actions != null) ...widget.actions!,
+
+        // Toggle dark/light mode — ikon bulan/matahari bertema luar angkasa
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
           transitionBuilder: (child, animation) => RotationTransition(
@@ -112,9 +129,10 @@ class _TopAppBarWidgetState extends State<TopAppBarWidget> {
             child: FadeTransition(opacity: animation, child: child),
           ),
           child: IconButton(
-            // key unik agar AnimatedSwitcher mendeteksi pergantian widget
             key: ValueKey(isDark),
-            icon: Icon(isDark ?  Icons.dark_mode_outlined : Icons.light_mode_outlined),
+            icon: Icon(
+              isDark ? Icons.nightlight_round : Icons.wb_sunny_outlined,
+            ),
             tooltip: isDark ? 'Ganti ke Light Mode' : 'Ganti ke Dark Mode',
             onPressed: themeNotifier.toggle,
           ),
@@ -124,7 +142,7 @@ class _TopAppBarWidgetState extends State<TopAppBarWidget> {
         if (widget.withSearch)
           _isSearchActive
               ? IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.close_rounded),
             onPressed: () {
               setState(() => _isSearchActive = false);
               _searchController.clear();
@@ -132,7 +150,7 @@ class _TopAppBarWidgetState extends State<TopAppBarWidget> {
             },
           )
               : IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.search_rounded),
             onPressed: () => setState(() => _isSearchActive = true),
           ),
 
@@ -172,9 +190,7 @@ class _TopAppBarWidgetState extends State<TopAppBarWidget> {
             )
                 .toList(),
             onSelected: (item) {
-              if (item.route != null) {
-                context.go(item.route!);
-              }
+              if (item.route != null) context.go(item.route!);
               item.onTap?.call();
             },
           ),

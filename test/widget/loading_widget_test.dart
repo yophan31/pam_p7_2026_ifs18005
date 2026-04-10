@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pam_p7_2026_ifs18005/shared/widgets/loading_widget.dart';
+import 'package:pam_p7_2026_ifs23020/shared/widgets/loading_widget.dart';
 
 void main() {
   group('LoadingWidget', () {

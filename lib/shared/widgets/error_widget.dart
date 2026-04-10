@@ -23,14 +23,15 @@ class AppErrorWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Ikon satelit rusak — lebih relevan dengan tema planet/antariksa
             Icon(
-              Icons.wifi_off_rounded,
-              size: 64,
+              Icons.satellite_alt_outlined,
+              size: 72,
               color: colorScheme.error,
             ),
             const SizedBox(height: 16),
             Text(
-              'Terjadi Kesalahan',
+              'Sinyal Terputus',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: colorScheme.error,
@@ -46,8 +47,8 @@ class AppErrorWidget extends StatelessWidget {
               const SizedBox(height: 24),
               FilledButton.icon(
                 onPressed: onRetry,
-                icon: const Icon(Icons.refresh),
-                label: const Text('Coba Lagi'),
+                icon: const Icon(Icons.refresh_rounded),
+                label: const Text('Hubungkan Ulang'),
               ),
             ],
           ],

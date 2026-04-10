@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pam_p7_2026_ifs18005/app.dart';
+import 'package:pam_p7_2026_ifs23020/app.dart';
 
 void main() {
   group('Navigasi Aplikasi (End-to-End)', () {

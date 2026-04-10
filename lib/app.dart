@@ -6,6 +6,7 @@ import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_notifier.dart';
 import 'providers/plant_provider.dart';
+import 'providers/planet_provider.dart';
 
 class DelcomPlantsApp extends StatefulWidget {
   const DelcomPlantsApp({super.key});
@@ -27,16 +28,16 @@ class _DelcomPlantsAppState extends State<DelcomPlantsApp> {
   Widget build(BuildContext context) {
     return ThemeProvider(
       notifier: _themeNotifier,
-      // MultiProvider menyuntikkan semua provider ke widget tree
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => PlantProvider()),
+          ChangeNotifierProvider(create: (_) => PlanetProvider()), // ✅ tambahkan ini
         ],
         child: ValueListenableBuilder<ThemeMode>(
           valueListenable: _themeNotifier,
           builder: (context, themeMode, child) {
             return MaterialApp.router(
-              title: 'Delcom Plants',
+              title: 'Delcom Planets',
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               themeMode: themeMode,

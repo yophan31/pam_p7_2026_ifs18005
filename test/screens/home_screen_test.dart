@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pam_p7_2026_ifs18005/core/theme/app_theme.dart';
-import 'package:pam_p7_2026_ifs18005/core/theme/theme_notifier.dart';
-import 'package:pam_p7_2026_ifs18005/features/home/home_screen.dart';
+import 'package:pam_p7_2026_ifs23020/core/theme/app_theme.dart';
+import 'package:pam_p7_2026_ifs23020/core/theme/theme_notifier.dart';
+import 'package:pam_p7_2026_ifs23020/features/home/home_screen.dart';
 
 Widget buildHomeTest() {
   final notifier = ThemeNotifier(initial: ThemeMode.light);

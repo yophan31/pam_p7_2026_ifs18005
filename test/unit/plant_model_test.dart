@@ -1,7 +1,7 @@
 // test/unit/plant_model_test.dart
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pam_p7_2026_ifs18005/data/models/plant_model.dart';
+import 'package:pam_p7_2026_ifs23020/data/models/plant_model.dart';
 
 void main() {
   group('PlantModel', () {
@@ -11,7 +11,7 @@ void main() {
       id: uuid,
       nama: 'Wortel',
       gambar:
-      'https://pam-2026-p4-ifs18005-be.delcom.org:8080/static/plants/uuid.png',
+      'https://https://pam-2026-p4-ifs23020-be.dyophanci.fun:8080/static/plants/uuid.png',
       pathGambar: 'uploads/plants/uuid.png',
       deskripsi: 'Sayuran berwarna oranye.',
       manfaat: 'Baik untuk kesehatan mata.',
@@ -29,7 +29,7 @@ void main() {
         'id': uuid,
         'nama': 'Wortel',
         'gambar':
-        'https://pam-2026-p4-ifs18005-be.delcom.org:8080/static/plants/uuid.png',
+        'https://https://pam-2026-p4-ifs23020-be.dyophanci.fun:8080/static/plants/uuid.png',
         'pathGambar': 'uploads/plants/uuid.png',
         'deskripsi': 'Sayuran berwarna oranye.',
         'manfaat': 'Baik untuk kesehatan mata.',

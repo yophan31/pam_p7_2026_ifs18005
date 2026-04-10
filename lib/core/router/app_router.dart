@@ -7,6 +7,10 @@ import '../../features/plants/plants_add_screen.dart';
 import '../../features/plants/plants_detail_screen.dart';
 import '../../features/plants/plants_edit_screen.dart';
 import '../../features/plants/plants_screen.dart';
+import '../../features/planets/planets_add_screen.dart';
+import '../../features/planets/planets_detail_screen.dart';
+import '../../features/planets/planets_edit_screen.dart';
+import '../../features/planets/planets_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../constants/route_constants.dart';
 import '../../shared/widgets/bottom_nav_widget.dart';
@@ -29,13 +33,17 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) => const PlantsScreen(),
         ),
         GoRoute(
+          path: RouteConstants.planets,
+          builder: (context, state) => const PlanetsScreen(),
+        ),
+        GoRoute(
           path: RouteConstants.profile,
           builder: (context, state) => const ProfileScreen(),
         ),
       ],
     ),
 
-    // Route di luar ShellRoute agar tidak menampilkan BottomNav
+    // ── Plants (di luar ShellRoute agar tidak menampilkan BottomNav) ──
     GoRoute(
       path: '/plants/add',
       builder: (context, state) => const PlantsAddScreen(),
@@ -43,7 +51,6 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/plants/:id',
       builder: (context, state) {
-        // ID bertipe String (UUID)
         final id = state.pathParameters['id'] ?? '';
         return PlantsDetailScreen(plantId: id);
       },
@@ -53,6 +60,26 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         final id = state.pathParameters['id'] ?? '';
         return PlantsEditScreen(plantId: id);
+      },
+    ),
+
+    // ── Planets (di luar ShellRoute agar tidak menampilkan BottomNav) ──
+    GoRoute(
+      path: '/planets/add',
+      builder: (context, state) => const PlanetsAddScreen(),
+    ),
+    GoRoute(
+      path: '/planets/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id'] ?? '';
+        return PlanetsDetailScreen(planetId: id);
+      },
+    ),
+    GoRoute(
+      path: '/planets/:id/edit',
+      builder: (context, state) {
+        final id = state.pathParameters['id'] ?? '';
+        return PlanetsEditScreen(planetId: id);
       },
     ),
   ],

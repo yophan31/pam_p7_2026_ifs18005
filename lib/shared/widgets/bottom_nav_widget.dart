@@ -37,6 +37,12 @@ class BottomNavWidget extends StatelessWidget {
       activeIcon: Icons.eco,
     ),
     _NavItem(
+      label: 'Planets',
+      route: RouteConstants.planets,
+      icon: Icons.public_outlined,
+      activeIcon: Icons.public,
+    ),
+    _NavItem(
       label: 'Profile',
       route: RouteConstants.profile,
       icon: Icons.person_outline,
@@ -53,8 +59,6 @@ class BottomNavWidget extends StatelessWidget {
     final currentLocation = _getCurrentRoute(context);
     final colorScheme = Theme.of(context).colorScheme;
 
-    // boxShadow harus ada di luar ClipRRect agar tidak terpotong.
-    // ClipRRect hanya membungkus NavigationBar untuk border radius.
     return DecoratedBox(
       decoration: BoxDecoration(
         boxShadow: [
@@ -102,7 +106,7 @@ class BottomNavWidget extends StatelessWidget {
               }).toList(),
             ),
           ),
-        )
+        ),
       ),
     );
   }
@@ -110,7 +114,8 @@ class BottomNavWidget extends StatelessWidget {
   int _getSelectedIndex(String location) {
     if (location == RouteConstants.home) return 0;
     if (location.startsWith(RouteConstants.plants)) return 1;
-    if (location.startsWith(RouteConstants.profile)) return 2;
+    if (location.startsWith(RouteConstants.planets)) return 2;
+    if (location.startsWith(RouteConstants.profile)) return 3;
     return 0;
   }
 }
@@ -131,16 +136,17 @@ class _NavIcon extends StatelessWidget {
       height: 48,
       decoration: isSelected
           ? BoxDecoration(
-              color: colorScheme.primaryContainer.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-                color: colorScheme.primary.withValues(alpha: 0.3),
-              ),
-            )
+        color: colorScheme.primaryContainer.withValues(alpha: 0.25),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: colorScheme.primary.withValues(alpha: 0.3),
+        ),
+      )
           : null,
       child: Icon(
         isSelected ? item.activeIcon : item.icon,
-        color: isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
+        color:
+        isSelected ? colorScheme.primary : colorScheme.onSurfaceVariant,
       ),
     );
   }

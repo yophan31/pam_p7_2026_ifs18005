@@ -12,5 +12,11 @@ class RouteConstants {
   static String plantsDetail(String id) => '/plants/$id';
   static String plantsEdit(String id) => '/plants/$id/edit';
 
+  // ── Planets ──────────────────────────────────────────────
+  static const String planets = '/planets';
+  static const String planetsAdd = '/planets/add';
+  static String planetsDetail(String id) => '/planets/$id';
+  static String planetsEdit(String id) => '/planets/$id/edit';
+
   static const String profile = '/profile';
 }
